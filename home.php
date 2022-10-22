@@ -42,68 +42,40 @@ include_once("./connect.php");
       </div>
     </div>
 
-    <div class="container" style="padding-bottom: 50px;">
-      <div class="row">
-        <?php
-        $result = pg_query($conn, "Select * from product ORDER BY product_id LIMIT 4 ");
-        while ($row = pg_fetch_assoc($result)) {
-        ?>
-          <div class="col-md-3 col-sm-6 col-xs-6 col-6">
-            <div class="product-block">
-              <div class="product-img fade-box" style="border: double;">
-                <a href="#" title="Adidas EQT Cushion ADV" class="img-resize">
-                  <img style="height: 700px; width:700px" src="images/<?php echo $row["product_picture"]; ?>" alt="Adidas EQT Cushion ADV" class="lazyloaded">
-                  <img style="height: 700px; width:700px" src="images/<?php echo $row["product_picture"]; ?>" alt="Adidas EQT Cushion ADV" class="lazyloaded">
-                </a>
-              </div>
-              <div class="product-detail clearfix">
-                <div class="pro-text">
-                  <a style=" color: black;
-                  font-size: 14px;text-decoration: none;" href="#" title="Adidas EQT Cushion ADV" inspiration pack>
-                    <?php echo $row["product_name"]; ?>
-                  </a>
-                </div>
-                <div class="pro-price">
-                  <a style="color:black" href="?page=cart&&id=<?php echo $row["product_id"]; ?>"><?php echo $row["product_price"]; ?>$ <img style="height: 20px; width:20px" src="images/add_to_cart.png"></a>
-                </div>
-              </div>
-            </div>
-          </div>
-        <?php
-        }
-        ?>
-      </div>
-      <div class="row">
-        <?php
-        $result = pg_query($conn, "Select * from product ORDER BY product_name DESC LIMIT 4 ");
-        while ($row = pg_fetch_array($result)) {
-        ?>
-          <div class="col-md-3 col-sm-6 col-xs-6 col-6">
-            <div class="product-block">
-              <div class="product-img fade-box" style="border: double;">
-                <a href="#" title="Adidas EQT Cushion ADV" class="img-resize">
-                  <img style="height: 700px; width:700px" src="images/<?php echo $row["product_picture"]; ?>" alt="Adidas EQT Cushion ADV" class="lazyloaded">
-                  <img style="height: 700px; width:700px" src="images/<?php echo $row["product_picture"]; ?>" alt="Adidas EQT Cushion ADV" class="lazyloaded">
-                </a>
-              </div>
-              <div class="product-detail clearfix">
-                <div class="pro-text">
-                  <a style=" color: black;
-                  font-size: 14px;text-decoration: none;" href="#" title="Adidas EQT Cushion ADV" inspiration pack>
-                    <?php echo $row["product_name"]; ?>
-                  </a>
-                </div>
-                <div class="btn btn-outline-primary">
-                  <a style="color:black" href="?page=cart&&id=<?php echo $row["product_id"]; ?>"><?php echo $row["product_price"]; ?>$ <img style="height: 20px; width:20px" src="images/add_to_cart.png"></a>
+    <div class="container product" style="width: 100%;margin: auto;">
+        <div class="owl-carousel owl-theme owl-product-setting">
+          <?php
+          $result = pg_query($conn, "Select * from product ORDER BY product_name");
+          while ($row = pg_fetch_array($result)) {
+          ?>
+            <div class="item">
+              <div class="">
+                <div class="product-block">
+                  <div class="product-img fade-box">
+                    <a href="#" title="Adidas Ultraboost W" class="img-resize">
+                      <img src="images/<?php echo $row["product_picture"]; ?>" alt="Adidas Ultraboost W" class="lazyloaded">
+                      <img src="images/<?php echo $row["product_picture"]; ?>" alt="Adidas Ultraboost W" class="lazyloaded">
+                    </a>
+                  </div>
+                  <div class="product-detail clearfix">
+                    <div class="pro-text">
+                      <a style=" color: black;
+                           font-size: 14px;text-decoration: none;" href="#" title="Adidas Ultraboost W" inspiration pack>
+                        <?php echo $row["product_name"]; ?>
+                      </a>
+                    </div>
+                    <div class="pro-price">
+                      <a style="color:black" href="?page=cart&&id=<?php echo $row["product_id"]; ?>"><?php echo $row["product_price"]; ?>$<img style="height: 20px; width:20px; margin-left:151px;" src="images/add_to_cart.png"></a>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        <?php
-        }
-        ?>
+          <?php }
+          ?>
+
+        </div>
       </div>
-    </div>
     <section class="section wrapper-home-banner">
       <div class="container-fluid" style="padding-bottom: 50px;">
         <div class="row">
