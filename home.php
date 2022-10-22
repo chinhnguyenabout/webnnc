@@ -93,7 +93,7 @@ include_once("./connect.php");
                     <?php echo $row["product_name"]; ?>
                   </a>
                 </div>
-                <div class="pro-price">
+                <div class="btn btn-outline-primary">
                   <a style="color:black" href="?page=cart&&id=<?php echo $row["product_id"]; ?>"><?php echo $row["product_price"]; ?>$ <img style="height: 20px; width:20px" src="images/add_to_cart.png"></a>
                 </div>
               </div>
