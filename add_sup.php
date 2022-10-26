@@ -1,24 +1,18 @@
 <?php
-$id = $_GET['id'];
 
-$result = pg_query($conn, "SELECT* FROM category WHERE cate_id='{$id}'");
-$row = pg_fetch_assoc($result);
-
-if (isset($_POST['update'])) {
+if (isset($_POST['add'])) {
 
     include_once('./connect.php');
 
-    $cateid   = $_POST['txtId'];
-    $catename = $_POST['txtName'];
-    $des      = $_POST['txtDescription'];
+    $id   = $_POST['txtId'];
+    $name  = $_POST['txtName'];
 
-    $result = pg_query($conn, "UPDATE category SET cate_id='{$cateid}',cate_name='{$catename}',cate_description='{$des}'
-    WHERE cate_id='{$cateid}'");
+    $result = pg_query($conn, "INSERT INTO supplier(sup_id,sup_name) VALUES ('{$id}','{$name}')");
 
     if ($result) {
-        echo '<meta http-equiv="refresh" content="0;URL=?page=category_management"/>';
+        echo "New addition was successful. <a href='?page=supplier_management'>Back</a>";
     } else
-        echo "An error occurred during the update. <a href='?page=add_category'>Again</a>";
+        echo "An error occurred while adding new. <a href='supplier_management.php'>Try again</a>";
 }
 ?>
 <!DOCTYPE html>
@@ -41,7 +35,7 @@ if (isset($_POST['update'])) {
   <link rel="stylesheet" href="plugins/uikit/uikit.min.css" />
   <link rel="stylesheet" href="css/sign.css">
 
-  <title>Runner</title>
+  <title>CH Store</title>
 
 </head>
 
@@ -54,23 +48,17 @@ if (isset($_POST['update'])) {
         <div class="container">
             <div class="signin-left">
                 <div class="sign-title">
-                    <h1>Update category</h1>
+                    <h1>Add supplier</h1>
                 </div>
             </div>
             <div class="signin-right ">
                 <form action="" method="POST">
                     <div class="username form-control1 ">
-                        <input type="text" name="txtId"  id="username" placeholder="ID" value="<?php echo $row['cate_id']?>" readonly="">
+                        <input type="text" name="txtId"  id="fullname" placeholder="ID">
                     </div>
                     <div class="password form-control1">
-                        <input type="text" name="txtName" id="password" placeholder="Name" value="<?php echo $row['cate_name']?>">
-                    </div>
-                    <div class="fullname form-control1">
-                      <input type="text" name="txtDescription" id="fullname" placeholder="Description" value="<?php echo $row['cate_description']?>">
-                    </div>
-                    <div class="recaptcha form-control1">This site is protected by reCAPTCHA and the Google <a href="">Privacy Policy</a> and <a href="">Terms of Service</a> apply.</div>
-                    <div >
-                      <button class="submit" type="submit" name="update"><p>Update</p></button>
+                        <input type="text" name="txtName" id="fullname" placeholder="Name">
+                      <button class="submit" type="submit" name="add"><p>Add</p></button>
                        
                     </div>
                     <div class="backto">
@@ -123,7 +111,6 @@ if (isset($_POST['update'])) {
         </div>
       </div>
     </section>
-
   </div>
  
   <script async defer crossorigin="anonymous" src="plugins/sdk.js"></script>

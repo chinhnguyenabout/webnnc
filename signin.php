@@ -11,7 +11,7 @@ if (isset($_POST['btnsignin'])) {
     //Kiểm tra tên đăng nhập có tồn tại không
     $result = pg_query($conn, "SELECT acc_name, password, state FROM public.account WHERE acc_name='{$username}'");
     if (pg_num_rows($result) == 0) {
-        echo "Tên đăng nhập này không tồn tại. Vui lòng kiểm tra lại. <a href='javascript: history.go(-1)'>Trở lại</a>";
+        echo "This username does not exist. Please check again. <a href='javascript: history.go(-1)'>Trở lại</a>";
         exit;
     }
     //Lấy mật khẩu trong database ra
@@ -19,14 +19,14 @@ if (isset($_POST['btnsignin'])) {
 
     //So sánh 2 mật khẩu có trùng khớp hay không
     if ($password != $row['password']) {
-        echo "Mật khẩu không đúng. Vui lòng nhập lại. <a href='javascript: history.go(-1)'>Trở lại</a>";
+        echo "Wrong password. Please re-enter. <a href='javascript: history.go(-1)'>Trở lại</a>";
         exit;
     }
 
     if (pg_num_rows($result) == 1) {
         $_SESSION["us"] = $username;
         $_SESSION["admin"] = $row['state'];
-        echo "thanh cong";
+        echo "successful";
         echo '<meta http-equiv="refresh" content="0;URL=?page=index.php"/>';
     } else {
         echo "You loged in fail!";
@@ -93,7 +93,7 @@ if (isset($_POST['btnsignin'])) {
             <div class="signin-right " id="b-sign">
                 <form action="">
                     <div class="username form-control1 ">
-                       <h2>Phục hồi mật khẩu</h2>
+                       <h2>Password Recovery</h2>
                     </div>
                     <div class="password form-control1">
                         <input type="password" id="password" placeholder="Password">
@@ -103,7 +103,7 @@ if (isset($_POST['btnsignin'])) {
                     <div class="submit">
                       <input class="btn" type="submit" value="Gửi">
                       <div class="forgetpassword">
-                            <a href="" id="huy">Hủy</a>
+                            <a href="" id="huy">Cancel</a>
                       </div>
                        
                     </div>

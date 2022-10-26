@@ -1,7 +1,7 @@
 <?php
 $id = $_GET['id'];
 
-$result = pg_query($conn, "SELECT* FROM category WHERE cate_id='{$id}'");
+$result = pg_query($conn, "SELECT* FROM supplier WHERE sup_id='{$id}'");
 $row = pg_fetch_assoc($result);
 
 if (isset($_POST['update'])) {
@@ -10,15 +10,14 @@ if (isset($_POST['update'])) {
 
     $cateid   = $_POST['txtId'];
     $catename = $_POST['txtName'];
-    $des      = $_POST['txtDescription'];
 
-    $result = pg_query($conn, "UPDATE category SET cate_id='{$cateid}',cate_name='{$catename}',cate_description='{$des}'
-    WHERE cate_id='{$cateid}'");
+    $result = pg_query($conn, "UPDATE supplier SET sup_id='{$cateid}',sup_name='{$catename}'
+    WHERE sup_id='{$cateid}'");
 
     if ($result) {
-        echo '<meta http-equiv="refresh" content="0;URL=?page=category_management"/>';
+        echo '<meta http-equiv="refresh" content="0;URL=?page=sup_management"/>';
     } else
-        echo "An error occurred during the update. <a href='?page=add_category'>Again</a>";
+        echo "An error occurred during the update. <a href='?page=add_sup'>Again</a>";
 }
 ?>
 <!DOCTYPE html>
@@ -60,16 +59,11 @@ if (isset($_POST['update'])) {
             <div class="signin-right ">
                 <form action="" method="POST">
                     <div class="username form-control1 ">
-                        <input type="text" name="txtId"  id="username" placeholder="ID" value="<?php echo $row['cate_id']?>" readonly="">
+                        <input type="text" name="txtId"  id="fullname" placeholder="ID" value="<?php echo $row['sup_id']?>" readonly="">
                     </div>
                     <div class="password form-control1">
-                        <input type="text" name="txtName" id="password" placeholder="Name" value="<?php echo $row['cate_name']?>">
+                        <input type="text" name="txtName" id="fullname" placeholder="Name" value="<?php echo $row['sup_name']?>">
                     </div>
-                    <div class="fullname form-control1">
-                      <input type="text" name="txtDescription" id="fullname" placeholder="Description" value="<?php echo $row['cate_description']?>">
-                    </div>
-                    <div class="recaptcha form-control1">This site is protected by reCAPTCHA and the Google <a href="">Privacy Policy</a> and <a href="">Terms of Service</a> apply.</div>
-                    <div >
                       <button class="submit" type="submit" name="update"><p>Update</p></button>
                        
                     </div>

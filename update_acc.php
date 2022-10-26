@@ -24,7 +24,7 @@ if (isset($_POST['update'])) {
     echo "<script>alert('You have successfully updated the information. Return to the homepage')</script>";
     echo '<meta http-equiv="refresh" content="0;URL=?page=index"/>';
   } else
-    echo "Có lỗi xảy ra trong quá trình cập nhật. <a href='?page=index'>Again</a>";
+    echo "An error occurred during the update. <a href='?page=index'>Again</a>";
 }
 ?>
 <!DOCTYPE html>

@@ -6,7 +6,7 @@ include_once("./connect.php");
 if (isset($_GET["function"]) == "del") {
     if (isset($_GET["id"])) {
         $id = $_GET["id"];
-        pg_query($conn, "delete from account where Acc_Name='$id'");
+        pg_query($conn, "delete from account where acc_name='$id'");
     }
 }
 
@@ -36,13 +36,13 @@ $re1 = pg_query($conn, $sql1);
             ?>
                 <tr>
                     <td><?php echo $no ?></td>
-                    <td><?= $row['Acc_Name'] ?></td>
-                    <td><?= $row['Fullname'] ?></td>
-                    <td><?= $row['Gender'] ?></td>
-                    <td><?= $row['Email'] ?></td>
-                    <td><?= $row['Address'] ?></td>
+                    <td><?= $row['acc_name'] ?></td>
+                    <td><?= $row['fullname'] ?></td>
+                    <td><?= $row['gender'] ?></td>
+                    <td><?= $row['email'] ?></td>
+                    <td><?= $row['address'] ?></td>
                     <td><?php 
-                            if($row['State']==0){
+                            if($row['state']==0){
                                 echo "User";
                             }else{
                                 echo "Admin";
@@ -51,10 +51,10 @@ $re1 = pg_query($conn, $sql1);
                     </td>
 
                     <td>
-                        <a style="color: #272727" href="?page=update_acc&&id=<?php echo $row["Acc_Name"]; ?>">
+                        <a style="color: #272727" href="?page=update_acc&&id=<?php echo $row["acc_name"]; ?>">
                             <i class="glyphicon glyphicon-pencil"></i>
                         </a>
-                        <a style="color: #272727; margin-left:30px;" href="?page=user_management&&function=del&&id=<?php echo $row["Acc_Name"]; ?>" onClick="return confirm ('Are you sure delete')">
+                        <a style="color: #272727; margin-left:30px;" href="?page=user_management&&function=del&&id=<?php echo $row["acc_name"]; ?>" onClick="return confirm ('Are you sure delete')">
                             <i class="glyphicon glyphicon-remove"></i>
                         </a>
                     </td>

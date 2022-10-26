@@ -5,7 +5,7 @@ if (isset($_POST['stt'])) {
     $status = $_POST['stt'];
     $result = pg_query($conn, "UPDATE orders
     SET Status='{$status}'
-    WHERE Order_ID='$id'");
+    WHERE orderid='$id'");
     echo '<meta http-equiv="refresh" content="0;url=./index.php?page=order_management">';
 }
 ?>
@@ -49,24 +49,24 @@ if (isset($_POST['stt'])) {
                 <?php
                 $no = 1;
                 $re1 = pg_query($conn, "SELECT * 
-                 FROM orders,order_detail,shoe
-                 WHERE orders.Order_ID = '$id' and order_detail.Order_ID='$id' 
-                 and shoe.Shoe_ID=order_detail.Shoe_ID");
+                 FROM orders,order_detail,product
+                 WHERE orders.orderid = '$id' and order_detail.orderid='$id' 
+                 and product.product_id=order_detail.product_id");
                 while ($row = pg_fetch_assoc($re1)) {
                 ?>
                     <tr>
                         <td><?php echo $no; ?></td>
-                        <td><?php echo $row['Shoe_Name']; ?></td>
+                        <td><?php echo $row['product_id']; ?></td>
                         <td>
-                            <img src="./images/<?php echo $row['Shoe_Picture']; ?>" style="height: 100px; width: 100px;">
+                            <img src="./images/<?php echo $row['product_picture']; ?>" style="height: 100px; width: 100px;">
                         </td>
                         <td>
-                            <?php echo $row['Quantity']; ?></td>
+                            <?php echo $row['quantity']; ?></td>
                         <td>
-                            <?php echo $row['Price']; ?> $
+                            <?php echo $row['price']; ?> $
                         </td>
                         <td>
-                            <?php echo $row['Price'] * $row['Quantity']; ?> $
+                            <?php echo $row['price'] * $row['quantity']; ?> $
                         </td>
                     </tr>
 

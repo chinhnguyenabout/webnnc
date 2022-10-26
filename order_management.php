@@ -55,7 +55,7 @@ if (isset($_GET["function"]) == "del") {
                 ?>
                     <tr>
                         <td><?php echo $no; ?></td>
-                        <td><?php echo $row['order_id']; ?></td>
+                        <td><?php echo $row['orderid']; ?></td>
                         <td><?php echo $row['receiver_name']; ?></td>
                         <td>
                             <?php echo $row['phone']; ?></td>
@@ -67,11 +67,11 @@ if (isset($_GET["function"]) == "del") {
                         <td><?php echo  $row['total_price']; ?> $</td>
                         <td>
                         <?php 
-                            if($row['Status']==0){
+                            if($row['status']==0){
                                 echo "Processing";
-                            }elseif($row['Status']==1){
+                            }elseif($row['status']==1){
                                 echo "Confirmed";
-                            }elseif($row['Status']==2){
+                            }elseif($row['status']==2){
                                 echo "Complete";
                             }else{
                                 echo "Cancel";
@@ -80,10 +80,10 @@ if (isset($_GET["function"]) == "del") {
                         </td>
                         <td>
 
-                            <a style="color: #272727; margin-left:30px;" href="?page=order_detail&&id=<?php echo $row["Order_ID"]; ?>">
+                            <a style="color: #272727; margin-left:30px;" href="?page=order_detail&&id=<?php echo $row["orderid"]; ?>">
                                 <i class="glyphicon glyphicon-info-sign"></i>
                             </a>
-                            <a style="color: #272727; margin-left:30px;" href="?page=order_management&&function=del&&id=<?php echo $row["Order_ID"]; ?>" onClick="return confirm ('Are you sure delete')">
+                            <a style="color: #272727; margin-left:30px;" href="?page=order_management&&function=del&&id=<?php echo $row["orderid"]; ?>" onClick="return confirm ('Are you sure delete')">
                                 <i class="glyphicon glyphicon-remove"></i>
                             </a>
 

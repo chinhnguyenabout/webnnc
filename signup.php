@@ -27,10 +27,10 @@ if (isset($_POST['signup'])) {
         $result = pg_query($conn, "INSERT INTO account(acc_name,password,fullname,gender,email,address,state) VALUES ('{$username}','{$password}','{$fullname}','{$gender}','{$email}','{$address}',0)");
 
         if ($result) {
-            echo "Quá trình đăng ký thành công.";
+            echo "The registration process is successful.";
             echo '<meta http-equiv="refresh" content="0;URL=index.php?page=signin"/>';
         } else
-            echo "Có lỗi xảy ra trong quá trình đăng ký. <a href='signup.php'>Thử lại</a>";
+            echo "An error occurred during registration. <a href='signup.php'>Thử lại</a>";
     }
    
 }

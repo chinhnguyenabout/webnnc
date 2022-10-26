@@ -37,6 +37,9 @@ if (isset($_GET["function"]) == "del") {
                     <th scope="col">Quantity</th>
                     <th scope="col">Product Image</th>
                     <th scope="col">Description</th>
+                    <th scope="col">Cost</th>
+                    <th scope="col">Supplier</th>
+                    <th scope="col">Store</th>
                     <th  style="width:160px;"><a style="color: #272727;" href="?page=add_product" >
                         <i class="glyphicon glyphicon-plus"></i> Add new product</a>
                     </th>
@@ -59,6 +62,9 @@ if (isset($_GET["function"]) == "del") {
                             <img src="./images/<?php echo $row["product_picture"]; ?>" style="height: 100px; width: 100px;">
                         </td>
                         <td><?php echo $row["product_discription"]; ?></td>
+                        <td><?php echo $row["cost"]; ?></td>
+                        <td><?php echo $row["sup_id"]; ?></td>
+                        <td><?php echo $row["store"]; ?></td>   
                         <td>
                                 <a style="color: #272727" href="?page=update_product&&id=<?php echo $row["product_id"]; ?>">
                                     <i class="glyphicon glyphicon-pencil"></i>

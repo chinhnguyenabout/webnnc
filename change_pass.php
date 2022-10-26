@@ -10,11 +10,11 @@ if (isset($_POST['change'])) {
     $_SESSION['newpass']  = $_POST['NewPass'];
     $_SESSION['confirm']  = $_POST['Confirm'];
 
-    $result = pg_query($conn, "SELECT * FROM account WHERE Acc_Name='$id' and Password='$old_pass'");
+    $result = pg_query($conn, "SELECT * FROM account WHERE acc_name='$id' and Password='$old_pass'");
     $row = pg_fetch_assoc($result);
     if($row>0){
         if($_SESSION['newpass']==$_SESSION['confirm']){
-            $result = pg_query($conn, "UPDATE account SET Password = '{$_SESSION['confirm']}' WHERE account.Acc_Name = '{$id}'");
+            $result = pg_query($conn, "UPDATE account SET Password = '{$_SESSION['confirm']}' WHERE account.acc_name = '{$id}'");
             echo "Change your password success. <a href='?page=index'>Back</a>";
         }else{
             echo "Confirm password not match with new password. <a href='?page=change_pass'>Back</a>";

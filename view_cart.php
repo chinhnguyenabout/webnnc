@@ -15,8 +15,9 @@ $cart = (isset($_SESSION['cart'])) ? $_SESSION['cart'] : [];
         $address   = $_POST['txtAddress'];
         $today = date("Y/m/d");
         $total  = $_POST['txtTotal'];
+        $deliday = date("Y/m/d");
     
-        $result = pg_query($conn, "INSERT INTO orders(acc_name ,receiver_name,phone,order_date,delivery_address,total_price,status,delivery_date) VALUES ('{$_SESSION['us']}','{$rename}','{$numberphone}','{$today}','{$address}',{$total},0,'')");
+        $result = pg_query($conn, "INSERT INTO orders(acc_name, receiver_name, phone, delivery_address, total_price, status, order_date, delivery_date) VALUES ('{$_SESSION['us']}','{$rename}','{$numberphone}','{$address}',{$total},0,'{$today}', '{$deliday}')");
     
         $orderid = $pg->insert_id;
         foreach ($cart as $key => $value) {

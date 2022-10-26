@@ -11,9 +11,9 @@ if (isset($_POST['add'])) {
     $result = pg_query($conn, "INSERT INTO category(cate_id,cate_name,cate_description) VALUES ('{$id}','{$name}','{$descripton}')");
 
     if ($result) {
-        echo "Quá trình thêm mới thành công. <a href='?page=category_management'>Quay lại</a>";
+        echo "New addition was successful. <a href='?page=category_management'>Quay lại</a>";
     } else
-        echo "Có lỗi xảy ra trong quá trình thêm mới. <a href='category_management.php'>Thử lại</a>";
+        echo "An error occurred while adding new. <a href='category_management.php'>Thử lại</a>";
 }
 ?>
 <!DOCTYPE html>
@@ -36,7 +36,7 @@ if (isset($_POST['add'])) {
   <link rel="stylesheet" href="plugins/uikit/uikit.min.css" />
   <link rel="stylesheet" href="css/sign.css">
 
-  <title>Runner</title>
+  <title>CH Store</title>
 
 </head>
 
@@ -69,7 +69,7 @@ if (isset($_POST['add'])) {
                        
                     </div>
                     <div class="backto">
-                      <a href=""><i class="fa fa-long-arrow-alt-left"></i> Quay lại trang chủ</a>
+                      <a href=""><i class="fa fa-long-arrow-alt-left"></i>Go back</a>
                     </div>
                 </form>
             </div>
@@ -79,7 +79,7 @@ if (isset($_POST['add'])) {
       <div class="">
         <div class="hot_sp" style="padding-top: 70px;padding-bottom: 50px;">
           <h2 style="text-align:center;padding-top: 10px">
-            <a style="font-size: 28px;color: black;text-decoration: none" href="">Khách hàng và Runner Inn</a>
+            <a style="font-size: 28px;color: black;text-decoration: none" href="">Customers and Runner Inn</a>
           </h2>
         </div>
         <div class="list-gallery clearfix">

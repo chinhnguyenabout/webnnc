@@ -1,8 +1,8 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<div class="header">
+<!-- <div class="header">
   <a style="color: #ffffff;text-decoration: none;" href="index.php">FREE SHIPPING WITH INTERNAL ORDER > 300K CZK
     - REFUND IN 30 DAYS - QUALITY GUARANTEE</a>
-</div>
+</div> -->
 
 <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
 
@@ -49,8 +49,13 @@
                 </a>
               </li>
               <li class="">
-                <a href="?page=user_management" title="Oders management">
+                <a href="?page=user_management" title="User management">
                   User
+                </a>
+              </li>
+              <li class="">
+                <a href="?page=sup_management" title="Supplier management">
+                  Supplier
                 </a>
               </li>
             </ul>

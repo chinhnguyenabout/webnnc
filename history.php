@@ -46,28 +46,28 @@ if (isset($_SESSION['us']) == false)
             <tbody>
                 <?php
                 $no = 1;
-                $re1 = pg_query($conn, "Select * from orders where Acc_name='{$_SESSION['us']}'");
+                $re1 = pg_query($conn, "Select * from orders where acc_name='{$_SESSION['us']}'");
                 while ($row = pg_fetch_assoc($re1)) {
                 ?>
                     <tr>
                         <td><?php echo $no; ?></td>
-                        <td><?php echo $row['Order_ID']; ?></td>
-                        <td><?php echo $row['Receiver_Name']; ?></td>
+                        <td><?php echo $row['orderid']; ?></td>
+                        <td><?php echo $row['receiver_name']; ?></td>
                         <td>
-                            <?php echo $row['Phone']; ?></td>
+                            <?php echo $row['phone']; ?></td>
                         </td>
-                        <td><?php echo $row['Order_Date']; ?></td>
+                        <td><?php echo $row['order_date']; ?></td>
                         <td>
-                            <?php echo $row['Delivery_Address']; ?>
+                            <?php echo $row['delivery_address']; ?>
                         </td>
-                        <td><?php echo  $row['Total_Price']; ?> $</td>
+                        <td><?php echo  $row['total_price']; ?> $</td>
                         <td>
                             <?php 
-                            if($row['Status']==0){
+                            if($row['status']==0){
                                 echo "Processing";
-                            }elseif($row['Status']==1){
+                            }elseif($row['status']==1){
                                 echo "Confirmed";
-                            }elseif($row['Status']==2){
+                            }elseif($row['status']==2){
                                 echo "Complete";
                             }
                             else{
@@ -77,7 +77,7 @@ if (isset($_SESSION['us']) == false)
                             ?>
                         </td>
                         <td>
-                            <a style="color: #272727; margin-left:30px;" href="?page=order_detail&&id=<?php echo $row["Order_ID"]; ?>">
+                            <a style="color: #272727; margin-left:30px;" href="?page=order_detail&&id=<?php echo $row["order_id"]; ?>">
                                 <i class="glyphicon glyphicon-info-sign"></i>
                             </a>
                         </td>

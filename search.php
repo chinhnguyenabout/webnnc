@@ -49,12 +49,12 @@ include_once("./connect.php");
          $result = pg_query($conn,"SELECT * from product where product_name like '%{$se}%'");
         while ($row = pg_fetch_array($result)) {
         ?>
-          <div class="col-md-3 col-sm-6 col-xs-6 col-6">
+          <div class="col-md-3 col-sm-3 col-xs-3 col-3">
             <div class="product-block">
               <div class="product-img fade-box" style="border: double;">
                 <a href="#" title="Adidas EQT Cushion ADV" class="img-resize">
-                  <img style="height: 700px; width:700px" src="images/<?php echo $row["product_picture"]; ?>" alt="Adidas EQT Cushion ADV" class="lazyloaded">
-                  <img style="height: 700px; width:700px" src="images/<?php echo $row["product_picture"]; ?>" alt="Adidas EQT Cushion ADV" class="lazyloaded">
+                  <img style="height: 350px; width:350px" src="images/<?php echo $row["product_picture"]; ?>" alt="Adidas EQT Cushion ADV" class="lazyloaded">
+                  <img style="height: 350px; width:350px" src="images/<?php echo $row["product_picture"]; ?>" alt="Adidas EQT Cushion ADV" class="lazyloaded">
                 </a>
               </div>
               <div class="product-detail clearfix">

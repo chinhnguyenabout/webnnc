@@ -3,7 +3,7 @@
 include_once('./connect.php');
 //Get id
 $id = $_GET['id'];
-$sqlstring = "SELECT * FROM Shoe WHERE Shoe_ID = '$id' ";
+$sqlstring = "SELECT * FROM product WHERE product_id = '$id' ";
 
 $result = pg_query($conn, $sqlstring);
 $row = pg_fetch_assoc($result);
@@ -30,6 +30,28 @@ function bind_Category_List($conn, $selectedValue)
     echo "</select>";
 }
 
+function bind_Sup_List($conn, $selectedValue)
+{
+    $sqlstring = "SELECT sup_id, sup_name FROM supplier";
+    $result = pg_query($conn, $sqlstring);
+    echo "<select name='SupList' class='form-control'style='width: 100%;
+    height: 55px;
+    border: 1px solid transparent;
+    background: #ededed;
+    color: #272727;
+    padding: 0 20px;
+    font-weight: 500;' >
+        <option value='0'>Chose category</option>";
+    while ($row = pg_fetch_assoc($result)) {
+        if ($row['sup_id'] == $selectedValue) {
+            echo "<option value='" . $row['sup_id'] . "' selected>" . $row['sup_name'] . "</option>";
+        } else {
+            echo "<option value='" . $row['sup_id'] . "'>" . $row['sup_name'] . "</option>";
+        }
+    }
+    echo "</select>";
+}
+
 $sql_store = "SELECT * FROM product";
 $query_store = pg_query($conn, $sql_store);
 
@@ -50,28 +72,31 @@ if (isset($_POST['Update'])) {
     $quantity      = $_POST['txtQty'];
     $proimage      = $_FILES['Image'];
     $description      = $_POST['txtShort'];
+    $cost = $_POST['txtcost'];
+    $sup = $_POST['SupList'];
+    $store = $_POST['txtstore'];
 
     if ($proimage['name'] == '') {
-        $result = pg_query($conn, "UPDATE shoe
-        SET Shoe_Name='{$proname}',Shoe_Price={$price},Shoe_Quantity={$quantity},Cate_ID='{$procate}',Shoe_Discription='{$description}'
-        WHERE Shoe_ID='$id'");
+        $result = pg_query($conn, "UPDATE product
+        SET product_name='{$proname}',product_price={$price},product_quantity={$quantity},cate_id='{$procate}',product_discription='{$description}',cost='{$cost}',sup_id='{$sup}',store='{$store}'
+        WHERE product_id='$id'");
         if ($result) {
-            echo "Quá trình cập nhật thành công.";
+            echo "The update is successful.";
             echo '<meta http-equiv="refresh" content="0;URL=?page=product_management"/>';
         } else
-            echo "Có lỗi xảy ra trong quá trình cập nhật. <a href='?page=product'>Again</a>";
+            echo "An error occurred during the update. <a href='?page=product'>Again</a>";
     } else {
         copy($proimage['tmp_name'], "./images/" . $proimage['name']);
         unlink("images/$oldpic");
         $filePic = $proimage['name'];
-        $result = pg_query($conn, "UPDATE shoe 
-        SET Shoe_Name='{$proname}',Shoe_Price={$price},Shoe_Quantity={$quantity},Cate_ID='{$procate}',Shoe_Picture='{$filePic}',Shoe_Discription='{$description}'
-        WHERE Shoe_ID='$id'");
+        $result = pg_query($conn, "UPDATE product 
+        SET product_ame='{$proname}',product_rice={$price},product_quantity={$quantity},cate_id='{$procate}',product_picture='{$filePic}',product_discription='{$description}',cost='{$cost}',sup_id='{$sup}',store='{$store}'
+        WHERE product_id='$id'");
         if ($result) {
-            echo "Quá trình cập nhật thành công.";
+            echo "The update is successful.";
             echo '<meta http-equiv="refresh" content="0;URL=?page=product_management"/>';
         } else
-            echo "Có lỗi xảy ra trong quá trình cập nhật. <a href='?page=product'>Again</a>";
+            echo "An error occurred during the update. <a href='?page=product'>Again</a>";
     }
 }
 ?>
@@ -114,10 +139,10 @@ if (isset($_POST['Update'])) {
                 <div class="signin-right ">
                     <form id="frmProduct" name="frmProduct" method="POST" enctype="multipart/form-data" action="" class="form-horizontal" role="form">
                         <div class="username form-control1 ">
-                            <input type="text" name="txtID" id="username" placeholder="ID" value='<?php echo $row['Shoe_ID'] ?>' readonly>
+                            <input type="text" name="txtID" id="username" placeholder="ID" value='<?php echo $row['product_id'] ?>' readonly>
                         </div>
                         <div class="password form-control1">
-                            <input type="text" name="txtName" id="password" placeholder="Name" value='<?php echo $row['Shoe_Name'] ?>'>
+                            <input type="text" name="txtName" id="password" placeholder="Name" value='<?php echo $row['product_name'] ?>'>
                         </div>
                         <div class="fullname form-control1">
                             <div class="fullname form-control1">
@@ -125,16 +150,27 @@ if (isset($_POST['Update'])) {
                             </div>
                         </div>
                         <div class="username form-control1 ">
-                            <input type="text" name="txtPrice" id="username" placeholder="Price" value='<?php echo $row['Shoe_Price'] ?>'>
+                            <input type="text" name="txtPrice" id="username" placeholder="Price" value='<?php echo $row['product_price'] ?>'>
                         </div>
                         <div class="password form-control1">
-                            <input type="text" name="txtQty" id="password" placeholder="Quantity" value='<?php echo $row['Shoe_Quantity'] ?>'>
+                            <input type="text" name="txtQty" id="password" placeholder="Quantity" value='<?php echo $row['product_quantity'] ?>'>
                         </div>
                         <div class="fullname form-control1">
                             <input type="file" name="Image" id="fullname" placeholder="Image">
                         </div>
                         <div class="fullname form-control1">
-                            <input type="text" name="txtShort" id="fullname" placeholder="Description" value='<?php echo $row['Shoe_Discription'] ?>'>
+                            <input type="text" name="txtShort" id="fullname" placeholder="Description" value='<?php echo $row['product_discription'] ?>'>
+                        </div>
+                        <div class="fullname form-control1">
+                            <input type="text" name="txtcost" id="fullname" placeholder="Cost" value='<?php echo $row['cost'] ?>'>
+                        </div>
+                        <div class="fullname form-control1">
+                            <div class="fullname form-control1">
+                                <?php bind_Sup_List($conn, $procate); ?>
+                            </div>
+                        </div>
+                        <div class="fullname form-control1">
+                            <input type="text" name="txtstore" id="fullname" placeholder="Store" value='<?php echo $row['store'] ?>'>
                         </div>
                         <div class="recaptcha form-control1">This site is protected by reCAPTCHA and the Google <a href="">Privacy Policy</a> and <a href="">Terms of Service</a> apply.</div>
                         <div>

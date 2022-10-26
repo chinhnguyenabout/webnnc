@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="css/owl.theme.default.min.css" type="text/css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="icon" type="image/x-icon" href="./images/logo.png">
+    <link rel="icon" type="./image/x-icon" href="./images/logo.png">
 
     <link rel="stylesheet" href="plugins/uikit/uikit.min.css" />
 
@@ -80,6 +80,12 @@
             include_once("search.php");
         }elseif ($page == "user_management") {
             include_once("user_management.php");
+        }elseif ($page == "sup_management") {
+            include_once("sup_management.php");
+        }elseif ($page == "add_sup") {
+            include_once("add_sup.php");
+        }elseif ($page == "update_sup") {
+            include_once("update_sup.php");
         }
         else {
         include_once("home.php");
