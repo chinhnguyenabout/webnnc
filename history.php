@@ -40,6 +40,7 @@ if (isset($_SESSION['us']) == false)
                     <th scope="col">Address</th>
                     <th scope="col">Total price</th>
                     <th scope="col">Status</th>
+                    <th scope="col">Delivery day</th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -75,6 +76,9 @@ if (isset($_SESSION['us']) == false)
                             }    
                             
                             ?>
+                        </td>
+                        <td>
+                            <?php echo $row['delivery_date']; ?>
                         </td>
                         <td>
                             <a style="color: #272727; margin-left:30px;" href="?page=order_detail&&id=<?php echo $row["order_id"]; ?>">
