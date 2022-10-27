@@ -48,7 +48,7 @@ if (isset($_GET["function"]) == "del") {
             <tbody>
                 <?php
                 $no = 1;
-                $re1 = pg_query($conn, "Select * from product");
+                $re1 = pg_query($conn, "SELECT * from product, supplier WHERE supplier.sup_id = product.sup_id");
                 while($row = pg_fetch_assoc($re1)){
                 ?>
                     <tr>
@@ -63,7 +63,7 @@ if (isset($_GET["function"]) == "del") {
                         </td>
                         <td><?php echo $row["product_discription"]; ?></td>
                         <td><?php echo $row["cost"]; ?></td>
-                        <td><?php echo $row["sup_id"]; ?></td>
+                        <td><?php echo $row["sup_name"]; ?></td>
                         <td><?php echo $row["store"]; ?></td>   
                         <td>
                                 <a style="color: #272727" href="?page=update_product&&id=<?php echo $row["product_id"]; ?>">
