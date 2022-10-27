@@ -19,7 +19,8 @@ $cart = (isset($_SESSION['cart'])) ? $_SESSION['cart'] : [];
     
         $result = pg_query($conn, "INSERT INTO orders(acc_name, receiver_name, phone, delivery_address, total_price, status, order_date, delivery_date) VALUES ('{$_SESSION['us']}','{$rename}','{$numberphone}','{$address}',{$total},0,'{$today}', '{$deliday}')");
     
-        $orderid = $pg->insert_id;
+        // $orderid = $pg->insert_id;
+        $orderid = "SELECT MAX(orderid) as orderid FROM orders";
         foreach ($cart as $key => $value) {
             $proid = $value['id'];
             $quan = $value['quantity'];

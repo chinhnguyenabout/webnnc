@@ -52,7 +52,7 @@ if (isset($_POST['add'])) {
     copy($proimage['tmp_name'], "./images/" . $proimage['name']);
     $filePic = $proimage['name'];
     $result = pg_query($conn, "INSERT INTO product(product_id,product_name,cate_id,product_price,product_quantity,product_picture,product_discription,cost,sup_id,store)
-    VALUES('{$proid}','{$proname}','{$procate}',{$price},{$quantity},'{$filePic}','{$description}', 0, '{$cost}', '{$sup}','{$store}')");
+    VALUES('{$proid}','{$proname}','{$procate}',{$price},{$quantity},'{$filePic}','{$description}',{$cost}, {$sup},'{$store}')");
     if ($result) {
         echo "New addition was successful.";
         echo '<meta http-equiv="refresh" content="0;URL=?page=product_management"/>';   
